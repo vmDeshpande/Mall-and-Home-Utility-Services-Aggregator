@@ -1,0 +1,16 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules
+
+# Next.js
+.next/
+
+# TypeScript
+*.tsbuildinfo
+
+# OS files
+.DS_Store
