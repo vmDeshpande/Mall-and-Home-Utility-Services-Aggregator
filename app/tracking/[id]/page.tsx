@@ -10,6 +10,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { StarRating } from '@/components/ui/star-rating';
 import { StatusBadge } from '@/components/ui/status-badge';
+import { PaymentModal } from '@/components/payment/payment-modal';
+import { PaymentCard } from '@/components/payment/payment-card';
 import {
   Clock,
   CheckCircle2,
@@ -45,6 +47,7 @@ export default function TrackingPage() {
   const params = useParams<{ id: string }>();
   const [storedBooking, setStoredBooking] = useState<any>(null);
   const [remoteBooking, setRemoteBooking] = useState<any>(null);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('confirmedBooking');
@@ -219,7 +222,7 @@ export default function TrackingPage() {
             </Card>
 
             {/* Service Details */}
-            <Card className="p-8 border-border">
+            <Card className="p-8 border-border mb-8">
               <h2 className="text-2xl font-bold mb-6">Service Details</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -248,6 +251,20 @@ export default function TrackingPage() {
                 </div>
               </div>
             </Card>
+
+            {/* Payment Card - Shows when service is in progress */}
+            {booking.status === 'in-progress' && (
+              <PaymentCard
+                bookingId={booking.id}
+                serviceAmount={booking.totalPrice}
+                serviceName={storedBooking?.serviceType || 'Service'}
+                providerName={provider.name}
+                serviceDate={booking.date}
+                serviceTime={booking.time}
+                address={booking.address}
+                onPaymentClick={() => setIsPaymentModalOpen(true)}
+              />
+            )}
           </div>
 
           {/* Provider Info Sidebar */}
@@ -347,6 +364,19 @@ export default function TrackingPage() {
           </div>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={isPaymentModalOpen}
+        onClose={() => setIsPaymentModalOpen(false)}
+        bookingId={booking.id}
+        serviceAmount={booking.totalPrice}
+        serviceName={storedBooking?.serviceType || 'Service'}
+        providerName={provider.name}
+        serviceDate={booking.date}
+        serviceTime={booking.time}
+        address={booking.address}
+      />
 
       <Footer />
     </main>

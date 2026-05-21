@@ -1,1 +1,0 @@
-add a mock payment page fully same as payment if user decides to pay using card when service is marked as In progress give a card on tracking/[id] page so that user can pay online and wire that mock online payment page to that card make sure the payment values and everything is same as service details make it production ready
