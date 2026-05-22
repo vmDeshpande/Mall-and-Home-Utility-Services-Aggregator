@@ -90,6 +90,7 @@ export default function TrackingPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
+                  onClick={() => window.open(`/tracking/${booking._id}`)}
                 >
                   <Card className="p-6 border-border hover:shadow-lg transition-shadow">
                     {/* Header */}
