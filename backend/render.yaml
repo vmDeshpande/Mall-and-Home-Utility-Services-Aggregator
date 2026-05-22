@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: mall-home-utility-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MONGO_URI
+        scope: build
+      - key: CLIENT_URL
+        scope: build
+      - key: JWT_SECRET
+        scope: build
+      - key: CLOUDINARY_NAME
+        scope: build
+      - key: CLOUDINARY_API_KEY
+        scope: build
+      - key: CLOUDINARY_API_SECRET
+        scope: build
