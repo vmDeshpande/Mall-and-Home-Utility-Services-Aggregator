@@ -7,7 +7,6 @@
   "installCommand": "npm install",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "envPrefix": "NEXT_PUBLIC_",
   "git": {
     "deploymentEnabled": true
   },
